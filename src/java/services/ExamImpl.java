@@ -44,7 +44,7 @@ public class ExamImpl implements IExam {
 //            return false;
 //        }
 //        return true;
-        
+
         // To be deleted
         return false;
     }
@@ -58,15 +58,14 @@ public class ExamImpl implements IExam {
 //        }
 //        return result;
 
-
         // *********** TESTING ************
         return DummyData.getResult(user);
     }
 
     @Override
-    public boolean saveUser(User user){
+    public boolean saveUser(User user) {
         // call saveUser from dao
-        
+
         // To be deleted
         return false;
     }

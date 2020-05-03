@@ -12,7 +12,7 @@ import models.UserAnswers;
  * @author Arara
  */
 public class ExamDaoImpl implements IExamDao{
-    private EntityManagerFactory emf;
+    
     
     
     @Override

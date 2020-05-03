@@ -14,9 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.QuestionPossibleAnswers;
-import models.User;
+//import models.User;
 import models.UserAnswers;
 import services.ExamImpl;
+import services.UserImpl;
+import entities.User;
+import javax.servlet.http.HttpSession;
+import models.Result;
 
 /**
  *
@@ -24,6 +28,7 @@ import services.ExamImpl;
  */
 public class Exam extends HttpServlet {
     ExamImpl examService;
+    UserImpl userService;
     
     public Exam(){
         examService = new ExamImpl();
@@ -68,11 +73,11 @@ public class Exam extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Get questions from databse (get dummy data for now)
-        List<QuestionPossibleAnswers> questionsWithPossibleAnswers = examService.getQuestionsWithPossibleAnswers();
-        // Send questions to front
-        request.setAttribute("questionsWithPossibleAnswers", questionsWithPossibleAnswers);
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        rd.forward(request, response);
+        
+        
+        
+        
+
     }
 
     /**
@@ -88,13 +93,22 @@ public class Exam extends HttpServlet {
             throws ServletException, IOException {
         // Get user and selected answers from parameters
         UserAnswers userAnswers = (UserAnswers)request.getAttribute("userAnswers");
-        User user = userAnswers.getUser();
-        // Save to db via the examService
-        examService.saveUser(user);
-        examService.saveUserSelectedAnswers(userAnswers);
+//        User user = userAnswers.getUser();
+//         Save to db via the examService
+//        examService.saveUser(user);
+//        examService.saveUserSelectedAnswers(userAnswers);
        
+        
+        
+        HttpSession s = request.getSession();
+        entities.User user = new entities.User();
+        user.setUsername("AAA");
+        s.setAttribute("user", user);
+        userService.saveUser((User) s.getAttribute("user"));
+        userService.saveUser(user);
+        
         // Get Results
-        examService.getResult(user);
+//        examService.getResult(user);
         // Forward to index.jsp
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);

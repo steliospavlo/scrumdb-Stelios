@@ -4,6 +4,16 @@
     Author     : Walter
 --%>
 
+<%@page import="entities.User"%>
+<%@page import="javax.persistence.EntityManager"%>
+<%@page import="javax.persistence.Persistence"%>
+<%@page import="javax.persistence.EntityManagerFactory"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="entities.Answer"%>
+<%@page import="entities.Question"%>
+<%@page import="entities.User"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,11 +22,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <form action="index.jsp" method="GET">
+            <div class="form-group">
+                <label for="user">User</label>
+                <input type="text" class="form-control" id="user" name="user" maxlength="50" required>
+            </div>
+            <div id="alert"></div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
         <%
-            int x = 3, y = 3;
-            x++;
-           
+            String username = request.getParameter("user");
+            entities.User = new entities.User(username);
         %>
     </body>
 </html>
